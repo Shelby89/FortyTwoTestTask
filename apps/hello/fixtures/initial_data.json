@@ -1,0 +1,16 @@
+[
+  {
+    "model": "hello.Contact",
+    "pk": 1,
+    "fields": {
+      "name": "Dmytro",
+      "last_name": "Sapotnitskiy",
+	  "date_of_birth": "1989-03-24",
+      "bio": "I went to School # 73 during 1996 - 2006 years at Kryviy Rih city, Ukraine. After that, I went to Kryviy Rih Technical Unversity during 2006 - 2011 years.",
+	  "email": "shelby_dima@mail.ru",
+      "jabber": "shelby89@42cc.co",
+      "skype": "shelby_dima",
+	  "other_contacts": "Phone number and other information will be provided on demand"
+    }
+  }
+]
