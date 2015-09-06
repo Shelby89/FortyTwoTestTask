@@ -127,3 +127,7 @@ TEMPLATE_DIRS = (
 
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False
+
+FIXTURES_DIRS = (
+	os.path.join(BASE_DIR, '/apps/home/fixtures/'),
+)
