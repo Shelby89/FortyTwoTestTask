@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'apps.hello',
-	'south',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,5 +130,5 @@ TEMPLATE_DIRS = (
 SOUTH_TESTS_MIGRATE = False
 
 FIXTURES_DIRS = (
-	os.path.join(BASE_DIR, '/apps/home/fixtures/'),
+    os.path.join(BASE_DIR, '/apps/home/fixtures/'),
 )
