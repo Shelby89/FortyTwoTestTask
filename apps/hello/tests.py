@@ -10,4 +10,4 @@ class SomeTests(TestCase):
 	"""def TestMyContact(self):
 		# Primary key must be "1" for my contact
 		my_contact = Contact.object.get(pk=1)
-		self.assertEqual(my_contact.last_name, "Sapotnitskiy", "Ids are not equal!")"""
+		self.assertEqual(my_contact.last_name, "Sapotnitskiy", "Its not my contacts!")"""
