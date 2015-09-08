@@ -5,5 +5,5 @@ from django.test import TestCase
 
 class SomeTests(TestCase):
     def test_math(self):
-        "Here goes testing of math"
+        "Here goes testing of math function"
         assert(2 + 2 == 5)
