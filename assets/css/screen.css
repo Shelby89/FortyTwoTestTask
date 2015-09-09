@@ -1,7 +1,7 @@
-  .block1 { 
+  div.block1 { 
 		font-size: 150%;
 	    }
-  .block2 { 
+  div.block2 { 
 		width: 320px; 
 		padding: 10px;
 		padding-right: 20px; 
