@@ -1,4 +1,4 @@
-{% load assets %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,7 +11,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-        <link rel="stylesheet" href="{% assets 'css/screen.css' %}" media="screen, projection"/>
+        <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, projection"/>
 
         {% block extra_head %}{% endblock extra_head %}
 
