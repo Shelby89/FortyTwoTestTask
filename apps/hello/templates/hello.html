@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Shelby89-Test-{% endblock title %}
+
+{% block content %}
+<div class=block1>42 Coffee Cups Test Assignment</div>
+    {% if contacts%}
+
+				<div class=block2>
+							<br>
+							{{ contacts.name }}<br><br>
+							{{ contacts.last_name }}<br><br>
+							{{ contacts.date_of_birth }}<br><br><br>
+							Bio:<br>
+							{{ contacts.bio|linebreaks }}
+				</div>
+				<div class=block2>
+							Contacts<br><br>
+	
+							Email: {{ contacts.email }}<br><br>
+							Jabber: {{ contacts.jabber }}<br><br>
+							Skype: {{ contacts.skype }}<br><br>
+							Other contacts:<br>
+							{{ contacts.other_contacts|linebreaks }}
+				</div>
+{% else %}
+    <div class=block3>
+    There is no information about D.Sapotnitskiy in DB.
+    </div>
+{% endif %}
+{% endblock content %}
