@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock title %}Shelby89 - Test</title>
+        <title>{% block title %}{% endblock title %}Site Name</title>
 
         <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
 
@@ -17,25 +17,6 @@
 
     </head>
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-        {% block content %}
-			<div class=block1>42 Coffee Cups Test Assignment</div>
-				<div class=block2>
-							<br>
-							{{ contacts.name }}<br><br>
-							{{ contacts.last_name }}<br><br>
-							{{ contacts.date_of_birth }}<br><br><br>
-							Bio:<br>
-							{{ contacts.bio }}
-				</div>
-				<div class=block2>
-							Contacts<br><br>
-	
-							Email: {{ contacts.email }}<br><br>
-							Jabber: {{ contacts.jabber }}<br><br>
-							Skype: {{ contacts.skype }}<br><br>
-							Other contacts:<br>
-							{{ contacts.other_contacts }}
-				</div>
-		{% endblock content %}
+        {% block content %}{% endblock content %}
     </body>
 </html>

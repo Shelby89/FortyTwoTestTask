@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Contact(models.Model):
     name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    date_of_birth = models.DateField('date of birth')
+    date_of_birth = models.DateField("date of birth")
     bio = models.TextField()
     email = models.EmailField()
     jabber = models.CharField(max_length=30)
