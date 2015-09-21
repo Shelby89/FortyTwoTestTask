@@ -8,6 +8,9 @@ class SomeTests(TestCase):
 
     fixtures = ['initial_data.json']
 
+    def __unicode__(self):
+        return self.name.decode('utf-8')
+    
     def test_db_is_not_empty(self):
         "DB must not be empty"
         db_not_empty = Contact.objects.exists()
@@ -64,3 +67,29 @@ class SomeTests(TestCase):
         "For correct display cyrrilic charset utf-8 is needed"
         response = self.client.get(reverse('index'))
         self.assertContains(response, 'utf-8')
+
+    def test_context(self):
+        "Check for right context"
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('contacts' in response.context[-1])
+"""
+    def test_check_cyrillic(self):
+        "Test for correct display of cyrillic"
+        Contact.objects.create(name=u"Дмитро",
+                               last_name=u"Сапотніцький",
+                               date_of_birth=u"1989-03-24",
+                               bio=u"Інформація про мене",
+                               email=u"моя@пошта.укр",
+                               jabber=u"жаббер",
+                               skype=u"скайп",
+                               other_contacts=u"Інші контакти про мене"
+                               )
+        contacts = Contact.objects.get(pk=2)
+        #response = self.client.post('index', { 'contacts': contacts } )
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        search_text=u"Дмитро"
+        self.assertContains(response, search_text)
+        self.assertContains(response, "Sapotnitskiy")
+"""
