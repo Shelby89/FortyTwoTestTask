@@ -8,9 +8,6 @@ class SomeTests(TestCase):
 
     fixtures = ['initial_data.json']
 
-    def __unicode__(self):
-        return self.name.decode('utf-8')
-    
     def test_db_is_not_empty(self):
         "DB must not be empty"
         db_not_empty = Contact.objects.exists()
@@ -73,10 +70,10 @@ class SomeTests(TestCase):
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('contacts' in response.context[-1])
-"""
+
     def test_check_cyrillic(self):
         "Test for correct display of cyrillic"
-        Contact.objects.create(name=u"Дмитро",
+        """Contact.objects.create(name=u"Дмитро",
                                last_name=u"Сапотніцький",
                                date_of_birth=u"1989-03-24",
                                bio=u"Інформація про мене",
@@ -84,12 +81,14 @@ class SomeTests(TestCase):
                                jabber=u"жаббер",
                                skype=u"скайп",
                                other_contacts=u"Інші контакти про мене"
-                               )
-        contacts = Contact.objects.get(pk=2)
-        #response = self.client.post('index', { 'contacts': contacts } )
+                               )"""
+        contacts = Contact.objects.get(pk=1)
+        contacts.name = "Дмитро"
+        contacts.last_name = "Сапотніцький"
+        contacts.save()
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
-        search_text=u"Дмитро"
-        self.assertContains(response, search_text)
-        self.assertContains(response, "Sapotnitskiy")
-"""
+        name_cyrillic = u'Дмитро'
+        last_name_cyrillic = u'Сапотніцький'
+        self.assertContains(response, name_cyrillic)
+        self.assertContains(response, last_name_cyrillic)
