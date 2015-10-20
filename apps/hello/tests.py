@@ -73,15 +73,6 @@ class SomeTests(TestCase):
 
     def test_check_cyrillic(self):
         "Test for correct display of cyrillic"
-        """Contact.objects.create(name=u"Дмитро",
-                               last_name=u"Сапотніцький",
-                               date_of_birth=u"1989-03-24",
-                               bio=u"Інформація про мене",
-                               email=u"моя@пошта.укр",
-                               jabber=u"жаббер",
-                               skype=u"скайп",
-                               other_contacts=u"Інші контакти про мене"
-                               )"""
         contacts = Contact.objects.get(pk=1)
         contacts.name = "Дмитро"
         contacts.last_name = "Сапотніцький"
