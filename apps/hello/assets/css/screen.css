@@ -1,7 +1,7 @@
-  div.block1 { 
+.block1 { 
 		font-size: 150%;
 	    }
-  div.block2 { 
+.block2 { 
 		width: 320px; 
 		padding: 10px;
 		padding-right: 20px; 
@@ -9,3 +9,7 @@
 		top: 70px; 
 	    left: 10px; 
 	   }
+.block3 { 
+		width: 100px;
+		border: 4px solid black;
+	    }

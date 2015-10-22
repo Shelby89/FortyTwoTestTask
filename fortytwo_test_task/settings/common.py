@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'apps.hello',
+    'apps.list_requests',
     'south',
 )
 
@@ -53,7 +54,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'apps.hello.middleware.StatisticsMiddleware'
 )
 
 ROOT_URLCONF = 'fortytwo_test_task.urls'
@@ -93,7 +93,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'uploads')
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/uploads/'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
