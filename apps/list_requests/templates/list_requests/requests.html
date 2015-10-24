@@ -4,6 +4,8 @@
 
 {% block content %}
     {% for req in selected_requests %}
-        
+        <div id="req">Request: {{ req.request_time }}; {{ req.method }}; 
+        {{ req.path_info }}; {{ req.server_protocol }}; 
+        {{ req.remote_address }}:{{ req.server_port }}</p>
     {% endfor %}
 {% endblock content%}

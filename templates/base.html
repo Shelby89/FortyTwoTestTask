@@ -12,7 +12,18 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
         <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, projection"/>
-
+         <script type="text/javascript">
+    
+            // Refresh the Table every 5 seconds
+            setInterval(function(){
+                $.ajax({    
+                   url: /requests/,
+                      success: function(data) {
+                      $('#req').html(data);
+                      }
+                });
+            }, 1000)
+        </script>
         {% block extra_head %}{% endblock extra_head %}
 
     </head>

@@ -5,16 +5,42 @@ from django.utils import timezone
 from django.test import TestCase
 from django.core.urlresolvers import resolve, reverse
 
+from list_requests.models import StoredRequests
 
-def create_test_data(question, days):
+def create_test_data(quantity):
     """
     Creates a poll with the given `question` published the given number of
     `days` offset to now (negative for polls published in the past,
     positive for polls that have yet to be published).
     """
-    #return Poll.objects.create(question=question,
-    #    pub_date=timezone.now() + datetime.timedelta(days=days))
-    pass
+    # return [StoredRequests.objects.create(
+    #                 method='GET', path_info='/requests/',
+    #                 server_protocol='HTTP/1.1',
+    #                 server_port='8080',
+    #                 remote_address='10.240.208.91'
+    # ) for i in range(1, quantity)]
+    # insert_list = []
+    # for i in range(quantity):
+    #     method='GET'
+    #     path_info='/requests/'
+    #     server_protocol='HTTP/1.1',
+    #     server_port='8080',
+    #     remote_address='10.240.208.91'
+    #     insert_list.append(StoredRequests(method=method, server_protocol=server_protocol, server_port=server_port, remote_address=remote_address))                 
+    
+    StoredRequests.objects.bulk_create([
+        StoredRequests(method='GET1', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET2', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET3', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET4', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET5', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET6', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET7', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET8', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET9', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET10', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        StoredRequests(method='GET11', path_info='/requests/', server_protocol='HTTP/1.1', server_port='8080', remote_address='10.240.208.91'),
+        ])
 
 class TicketTests(TestCase):
 	def test_general(self):
@@ -25,12 +51,14 @@ class TicketTests(TestCase):
 		self.assertContains(response, "<a href='/requests/'>requests")
 		
 		# Он нажимает на ссылку и видит страницу с запросами (макс. 10 последних запроса),
+		create_test_data(quantity=10)
+		selected_requests = StoredRequests.objects.reverse()[:10]
 		response = self.client.get(reverse('list_requests:requests'))
 		self.assertEqual(response.status_code, 200)
-		print response.content
-		print "================"
-		print len(response.content)
-		self.assertEqual(response.context[selected_requests].count(), 10)
+		print selected_requests.count()
+		print response
+		self.assertEqual(response.context['selected_requests'].count(), 10)
+		
 		# которые храняться в базе данных.
 		# Страница обновляется автоматически так как появляются новые запросы
 		# При этом обновляется заголовок страницы.
