@@ -8,4 +8,4 @@ def index(request):
     except Contact.DoesNotExist:
         contacts = None
 
-    return render(request, 'hello.html', {'contacts': contacts})
+    return render(request, 'hello/hello.html', {'contacts': contacts})

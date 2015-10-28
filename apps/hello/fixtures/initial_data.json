@@ -12,5 +12,15 @@
       "skype": "shelby_dima",
       "other_contacts": "Phone number and other information\n will be provided on demand"
     }
+  },
+  {
+    "model": "auth.user", 
+    "pk": 1,
+    "fields": {
+      "username": "admin", 
+      "is_superuser": true, 
+      "is_staff": true,
+      "password": "pbkdf2_sha256$12000$t9R7qSw9VTTN$NLxFMZKJbiG8FHEk6jOsGyXspF+yh/Qg5i/GdH1IIUg="
+    }
   }
 ]
