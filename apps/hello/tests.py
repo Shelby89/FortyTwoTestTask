@@ -38,17 +38,17 @@ class SomeTests(TestCase):
 
     def test_view_exist(self):
         "View must exist"
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
 
     def test_used_template(self):
         "hello.html must be used in response"
-        response = self.client.get(reverse('index'))
-        self.assertTemplateUsed(response, 'hello.html')
+        response = self.client.get(reverse('hello:index'))
+        self.assertTemplateUsed(response, 'hello/hello.html')
 
     def test_all_fields_exist(self):
         "All fields must be displayed"
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('hello:index'))
         contacts = Contact.objects.get(pk=1)
         self.assertContains(response, contacts.name)
         self.assertContains(response, contacts.last_name)
@@ -62,12 +62,12 @@ class SomeTests(TestCase):
 
     def test_utf_8(self):
         "For correct display cyrrilic charset utf-8 is needed"
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('hello:index'))
         self.assertContains(response, 'utf-8')
 
     def test_context(self):
         "Check for right context"
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('contacts' in response.context[-1])
 
@@ -77,7 +77,7 @@ class SomeTests(TestCase):
         contacts.name = "Дмитро"
         contacts.last_name = "Сапотніцький"
         contacts.save()
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
         name_cyrillic = u'Дмитро'
         last_name_cyrillic = u'Сапотніцький'
