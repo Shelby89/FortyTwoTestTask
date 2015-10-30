@@ -4,31 +4,27 @@
 
 {% block content %}
 <div class=block1>42 Coffee Cups Test Assignment</div>
-    {% if contacts%}
-        {% for contact in contacts %}
-            {% if forloop.first %}
+    {% if contacts %}
 				<div class=block2>
 							<br>
-							{{ contact.name }}<br><br>
-							{{ contact.last_name }}<br><br>
-							{{ contact.date_of_birth }}<br><br><br>
+							{{ contacts.name }}<br><br>
+							{{ contacts.last_name }}<br><br>
+							{{ contacts.date_of_birth }}<br><br><br>
 							Bio:<br>
-							{{ contact.bio|linebreaks }}
+							{{ contacts.bio|linebreaks }}
 				</div>
 				<div class=block2>
 							Contacts<br><br>
 	
-							Email: {{ contact.email }}<br><br>
-							Jabber: {{ contact.jabber }}<br><br>
-							Skype: {{ contact.skype }}<br><br>
+							Email: {{ contacts.email }}<br><br>
+							Jabber: {{ contacts.jabber }}<br><br>
+							Skype: {{ contacts.skype }}<br><br>
 							Other contacts:<br>
-							{{ contact.other_contacts|linebreaks }}
+							{{ contacts.other_contacts|linebreaks }}
 				</div>
-			{% endif %}
-		{% endfor %}
     {% else %}
     <div class=block3>
-    There is no information with primary key is 1. 
+    There is no information in database. 
     </div>
 {% endif %}
 {% endblock content %}

@@ -10,3 +10,6 @@ class Contact(models.Model):
     jabber = models.CharField(max_length=30)
     skype = models.CharField(max_length=30)
     other_contacts = models.TextField()
+
+    def __unicode__(self):
+        return self.last_name

@@ -4,7 +4,7 @@ from apps.hello.models import Contact
 
 def index(request):
     try:
-        contacts = Contact.objects.all()
+        contacts = Contact.objects.first()
     except Contact.DoesNotExist:
         contacts = None
 

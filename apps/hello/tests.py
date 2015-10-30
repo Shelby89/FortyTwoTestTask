@@ -8,19 +8,25 @@ class SomeTests(TestCase):
 
     fixtures = ['initial_data.json']
 
-    def test_db_is_not_empty(self):
-        "DB must not be empty"
-        db_not_empty = Contact.objects.exists()
-        self.assertEqual(db_not_empty,
-                         True,
-                         "DB is empty!")
+    def test_no_rows_in_db(self):
+        "Test if there are 0 rows in DB"
+        Contact.objects.all().delete()
+        response = self.client.get(reverse('hello:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There is no information in database.")
+        self.assertEqual(response.context['contacts'], None)
 
-    def test_db_many_rows(self):
-        "DB must not have many rows"
-        db_not_empty = Contact.objects.count()
-        self.assertEqual(db_not_empty,
-                         1,
-                         "DB has %r rows!" % Contact.objects.count())
+    def test_two_rows_in_db(self):
+        "Test if there are 2 rows in DB"
+        Contact.objects.create(name="Test",
+                               last_name="Test",
+                               date_of_birth="1989-03-24"
+                               )
+        response = self.client.get(reverse('hello:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.context['contacts'], "Sapotnitskiy")
+        self.assertContains(response, "Dmytro")
+        self.assertContains(response, "Sapotnitskiy")
 
     def test_my_contact(self):
         "My contacts must be in DB"
@@ -49,7 +55,7 @@ class SomeTests(TestCase):
     def test_all_fields_exist(self):
         "All fields must be displayed"
         response = self.client.get(reverse('hello:index'))
-        contacts = Contact.objects.get(pk=1)
+        contacts = Contact.objects.first()
         self.assertContains(response, contacts.name)
         self.assertContains(response, contacts.last_name)
         birthday = contacts.date_of_birth.strftime("%B %d, %Y")
@@ -60,25 +66,24 @@ class SomeTests(TestCase):
         self.assertContains(response, contacts.skype)
         self.assertContains(response, contacts.other_contacts[:3])
 
-    def test_utf_8(self):
-        "For correct display cyrrilic charset utf-8 is needed"
-        response = self.client.get(reverse('hello:index'))
-        self.assertContains(response, 'utf-8')
-
-    def test_context(self):
+    def test_context_and_content(self):
         "Check for right context"
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('contacts' in response.context[-1])
+        self.assertTrue(response.context['contacts'], "Sapotnitskiy")
+        self.assertContains(response, "Dmytro")
+        self.assertContains(response, "Sapotnitskiy")
 
     def test_check_cyrillic(self):
         "Test for correct display of cyrillic"
-        contacts = Contact.objects.get(pk=1)
+        contacts = Contact.objects.first()
         contacts.name = "Дмитро"
         contacts.last_name = "Сапотніцький"
         contacts.save()
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'utf-8')
         name_cyrillic = u'Дмитро'
         last_name_cyrillic = u'Сапотніцький'
         self.assertContains(response, name_cyrillic)
