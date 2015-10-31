@@ -24,23 +24,13 @@ class SomeTests(TestCase):
                                )
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.context['contacts'], "Sapotnitskiy")
+        self.assertEqual(response.context['contacts'],
+                         Contact.objects.first())
+        self.assertEqual(response.context['contacts'].name, "Dmytro")
+        self.assertEqual(response.context['contacts'].last_name,
+                         "Sapotnitskiy")
         self.assertContains(response, "Dmytro")
         self.assertContains(response, "Sapotnitskiy")
-
-    def test_my_contact(self):
-        "My contacts must be in DB"
-        my_contact_en = Contact.objects.filter(name="Dmytro",
-                                               last_name="Sapotnitskiy"
-                                               ).count()
-        my_contact_ru = Contact.objects.filter(name="Дмитрий",
-                                               last_name="Сапотницкий"
-                                               ).count()
-        my_contact_ua = Contact.objects.filter(name="Дмитро",
-                                               last_name="Сапотніцький"
-                                               ).count()
-        my_contact = my_contact_en + my_contact_ru + my_contact_ua
-        self.assertEqual(my_contact, 1, "DB has not my contacts")
 
     def test_view_exist(self):
         "View must exist"

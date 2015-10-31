@@ -3,9 +3,5 @@ from apps.hello.models import Contact
 
 
 def index(request):
-    try:
-        contacts = Contact.objects.first()
-    except Contact.DoesNotExist:
-        contacts = None
-
+    contacts = Contact.objects.first()
     return render(request, 'hello/hello.html', {'contacts': contacts})
