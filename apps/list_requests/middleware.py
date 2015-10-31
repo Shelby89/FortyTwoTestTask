@@ -3,7 +3,8 @@ from datetime import datetime
 
 class MyHttpRequestMiddleware(object):
     def process_request(self, request):
-        try:
+        if request.is_ajax() != True:
+            try:
                 req = StoredRequests()
                 #req.request_time = datetime.now()
                 req.method = request.META.get('REQUEST_METHOD')
@@ -12,6 +13,6 @@ class MyHttpRequestMiddleware(object):
                 req.server_port = request.META.get('SERVER_PORT')
                 req.remote_address = request.META.get('REMOTE_ADDR')
                 req.save()
-        except KeyError:
-            pass
+            except KeyError:
+                pass
         return None

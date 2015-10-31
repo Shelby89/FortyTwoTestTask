@@ -12,5 +12,15 @@ def list_requests(request):
     # print '%s  %s', request.META.get('REMOTE_ADDR'), request.META.get('SERVER_PORT')
     # print "====================="
     # print request.META.get ('HTTP_X_FORWARDED_FOR')
-    selected_requests = StoredRequests.objects.order_by('-request_time')[:10]
-    return render(request, 'list_requests/requests.html', {'selected_requests': selected_requests})
+    time_per_session = datetime.datetime.now()
+    print is_naive(time_per_session)
+    print is_naive(request_time)
+    selected_requests = StoredRequests.objects.filter(request_time__gte=time_per_session).order_by('-request_time')[:10]
+    #selected_requests = StoredRequests.objects.order_by('-request_time')[:10]
+    count_req = StoredRequests.objects.all().count
+    return render(request,
+                    'list_requests/requests.html',
+                        {'selected_requests': selected_requests,
+                        'count_req': count_req,
+                        'time_per_session': time_per_session},
+                    )
