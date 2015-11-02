@@ -56,15 +56,6 @@ class SomeTests(TestCase):
         self.assertContains(response, contacts.skype)
         self.assertContains(response, contacts.other_contacts[:3])
 
-    def test_context_and_content(self):
-        "Check for right context"
-        response = self.client.get(reverse('hello:index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue('contacts' in response.context[-1])
-        self.assertTrue(response.context['contacts'], "Sapotnitskiy")
-        self.assertContains(response, "Dmytro")
-        self.assertContains(response, "Sapotnitskiy")
-
     def test_check_cyrillic(self):
         "Test for correct display of cyrillic"
         contacts = Contact.objects.first()
