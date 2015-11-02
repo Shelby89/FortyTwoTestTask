@@ -2,11 +2,16 @@
 
 {% block title %}Shelby89-Test-{% endblock title %}
 
+{% block extra_head %}
+<script type="text/javascript" 
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+{% endblock extra_head %}
+
 {% block content %}
-<div class=block1>42 Coffee Cups Test Assignment</div>
+<div class="block1">42 Coffee Cups Test Assignment</div>
     {% if contacts%}
 
-				<div class=block2>
+				<div class="block2">
 							<br>
 							{{ contacts.name }}<br><br>
 							{{ contacts.last_name }}<br><br>
@@ -14,7 +19,7 @@
 							Bio:<br>
 							{{ contacts.bio|linebreaks }}
 				</div>
-				<div class=block2>
+				<div class="block2">
 							Contacts<br><br>
 	
 							Email: {{ contacts.email }}<br><br>
@@ -24,11 +29,11 @@
 							{{ contacts.other_contacts|linebreaks }}
 				</div>
 {% else %}
-    <div class=block3>
+    <div class="block3">
     There is no information about D.Sapotnitskiy in DB.
     </div>
 {% endif %}
-	<div class=block3>
-		<a href='/requests/'>requests</a>
+	<div class="block3">
+		<a href='/requests/' onClick="time_1 = Date()">requests</a>
 	</div>
 {% endblock content %}

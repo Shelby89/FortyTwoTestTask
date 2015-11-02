@@ -14,8 +14,8 @@
                       success: function(data) {
                       var html = $(data).filter('#refresh').html();
                       $('#refresh').html(html);
-                      var html = $(data).filter('title').html();
-                      document.getElementsByTagName('title')[0].innerHTML = "(" + {{ count_req }} + ") Shelby89-Test";
+                      <!--var html = $(data).filter('title').html();-->
+                      <!--document.getElementsByTagName('title')[0].innerHTML = "(" + {{ count_req }} + ") Shelby89-Test";-->
                       <!--document.title = "(" + {{ count_req }} + ") Shelby89-Test";-->
                       }
                 });
