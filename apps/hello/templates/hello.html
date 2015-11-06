@@ -1,10 +1,65 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Shelby89-Test-{% endblock title %}
 
 {% block extra_head %}
-<script type="text/javascript" 
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/js_cookie.js' %}"></script>
+
+<script type="text/javascript">
+	        function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            
+            var csrftoken = getCookie('csrftoken');
+
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+	        $(document).ready(function(){
+                $("button").click(function(){
+                	$.post("/requests/", {
+        		        time: Date()
+            		},
+            		function(data) {
+            			alert(data);
+            		});
+        		});
+	        });
+	        $("a").click(function(){
+     		    $.post("/requests/", {
+ 		            time: Date()
+     		    },
+     		    function(data) {
+            			alert(data);
+            	});
+     	    });
+</script>
+
+
 {% endblock extra_head %}
 
 {% block content %}
@@ -34,6 +89,7 @@
     </div>
 {% endif %}
 	<div class="block3">
-		<a href='/requests/' onClick="time_1 = Date()">requests</a>
+		<button>Click me</button>
+		<a href='/requests/'>requests</a>
 	</div>
 {% endblock content %}

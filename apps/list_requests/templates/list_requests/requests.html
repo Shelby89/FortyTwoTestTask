@@ -1,33 +1,41 @@
 {% extends "base.html" %}
 
-{% block title %}{% endblock title %}
+{% block title %}({{ count_req }}) Shelby-Test"{% endblock title %}
 
 {% block extra_head %}
     <script type="text/javascript" 
     src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
         <script type="text/javascript">
     
-            // Refresh the Div every 1 seconds
+            // Refresh the Div every 2 seconds
             setInterval(function(){
+                
                 $.ajax({    
                    url: /requests/,
                       success: function(data) {
                       var html = $(data).filter('#refresh').html();
-                      $('#refresh').html(html);
-                      <!--var html = $(data).filter('title').html();-->
-                      <!--document.getElementsByTagName('title')[0].innerHTML = "(" + {{ count_req }} + ") Shelby89-Test";-->
-                      <!--document.title = "(" + {{ count_req }} + ") Shelby89-Test";-->
+                       $('#refresh').html(html);
+                      //$( "title" ).text(Object.data[''] + " new requests stored in db!");
+                      //alert(data)
+                      //var table_html = data.filter('#MyTable').html();
+                      //$('#MyTable').html(table_html);
+                      var myTitle = $(data).filter('title').html();
+                      $('title').html(myTitle);
                       }
                 });
-            }, 1000)
+                
+            }, 2000);
+            
+            //$('title').text({{ count_req }} + " new requests stored in db!");
+            
         </script>
 {% endblock extra_head %}
 
 {% block content %}
-    <h1>Time per session = {{ time_per_session }} {{ time_per_session|date:"d/M/Y H:i:s" }}</h1>
+    <h1>Time per session = {{ time_per_session|date:"d/M/Y H:i:s" }}</h1>
     <div id="refresh">
     {% for req in selected_requests %}
-        <div id="req">Request: {{ req.request_time }} [{{ req.request_time|date:"d/M/Y H:i:s" }}] "{{ req.method }} 
+        <div>Request: [{{ req.request_time|date:"d/M/Y H:i:s" }}] "{{ req.method }} 
         {{ req.path_info }} {{ req.server_protocol }}" 
         {{ req.remote_address }}:{{ req.server_port }}</div>
     {% endfor %}
