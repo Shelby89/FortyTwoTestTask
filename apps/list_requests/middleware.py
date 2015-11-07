@@ -6,7 +6,6 @@ class MyHttpRequestMiddleware(object):
         if request.is_ajax() != True:
             try:
                 req = StoredRequests()
-                #req.request_time = datetime.now()
                 req.method = request.META.get('REQUEST_METHOD')
                 req.path_info = request.META.get('PATH_INFO')
                 req.server_protocol = request.META.get('SERVER_PROTOCOL')
