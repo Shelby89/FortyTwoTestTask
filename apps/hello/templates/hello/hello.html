@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Shelby89-Test-{% endblock title %}
+{% block title %}Shelby89-Test{% endblock title %}
+
 
 {% block content %}
 <div class="block1">42 Coffee Cups Test Assignment</div>
+<<<<<<< HEAD:apps/hello/templates/hello/hello.html
     {% if contacts %}
+=======
+    {% if contacts%}
+
+>>>>>>> t3_middleware:apps/hello/templates/hello.html
 				<div class="block2">
 							<br>
 							{{ contacts.name }}<br><br>
@@ -22,9 +28,21 @@
 							Other contacts:<br>
 							{{ contacts.other_contacts|linebreaks }}
 				</div>
+<<<<<<< HEAD:apps/hello/templates/hello/hello.html
     {% else %}
     <div class="block3">
     There is no information in database. 
     </div>
 {% endif %}
 {% endblock content %}
+=======
+{% else %}
+    <div class="block2">
+    There is no information about D.Sapotnitskiy in DB.
+    </div>
+{% endif %}
+	<div class="block3">
+		<a href='/requests/'>requests</a>
+	</div>
+{% endblock content %}
+>>>>>>> t3_middleware:apps/hello/templates/hello.html
