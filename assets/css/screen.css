@@ -1,25 +1,27 @@
 .block1 { 
 		font-family: Georgia,serif;
-    font-size: 150%;
+    	font-size: 150%;
 }
 .block2 {
 		width: 320px; 
-    font-family: Georgia,serif;
+    	font-family: Georgia,serif;
 		padding: 10px;
 		padding-right: 20px; 
 		float: left;
 		top: 70px; 
-    left: 10px; 
+    	left: 10px; 
 }
 .block3 {
-    font-family: Georgia,serif;
+    	font-family: Georgia,serif;
+    	width: 640px;
+    	border-top: 2px solid black;
 		/*padding: 10px;*/
 		/*padding-right: 20px; */
 		/*float: left;*/
 		/*top: 70px; */
 		/*left: 10px; */
-	  position: relative;
-	  clear: left;
-	  /*float: left;*/
-    /*bottom: 2px;*/
+	  	position: relative;
+	 	clear: left;
+	 	/*float: left;*/
+    	/*bottom: 2px;*/
 }
