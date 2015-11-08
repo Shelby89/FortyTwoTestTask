@@ -2,19 +2,19 @@
 	font-family: Georgia,serif;
     font-size: 150%;
 }
-.block2 { 
-	width: 400px;
-	height: 400px;
-    font-family: Georgia,serif;
-	float: left;
-	padding: 10px;
-	padding-right: 20px;
-	top: 70px; 
-	left: 10px; 
+.block2 {
+		width: 400px;
+		height: 400px;
+    	font-family: Georgia,serif;
+		padding: 10px;
+		padding-right: 20px; 
+		float: left;
+		top: 70px; 
+    	left: 10px; 
 }
 .block3 {
     	font-family: Georgia,serif;
-    	width: 640px;
+    	width: 800px;
     	border-top: 2px solid black;
 	  	position: relative;
 	 	clear: left;

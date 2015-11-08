@@ -1,9 +1,9 @@
 from list_requests.models import StoredRequests
-from datetime import datetime
+
 
 class MyHttpRequestMiddleware(object):
     def process_request(self, request):
-        if request.is_ajax() != True:
+        if request.is_ajax() is not True:
             try:
                 req = StoredRequests()
                 req.method = request.META.get('REQUEST_METHOD')

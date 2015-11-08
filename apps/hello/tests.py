@@ -13,7 +13,7 @@ class SomeTests(TestCase):
         Contact.objects.all().delete()
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "There is no information in database.")
+        self.assertContains(response, "There is no information about")
         self.assertEqual(response.context['contacts'], None)
 
     def test_two_rows_in_db(self):
@@ -40,7 +40,11 @@ class SomeTests(TestCase):
     def test_used_template(self):
         "hello.html must be used in response"
         response = self.client.get(reverse('hello:index'))
+<<<<<<< HEAD
         self.assertTemplateUsed(response, 'hello/hello.html')
+=======
+        self.assertTemplateUsed(response, 'hello.html')
+>>>>>>> t3_middleware
 
     def test_all_fields_exist(self):
         "All fields must be displayed"
