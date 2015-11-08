@@ -22,7 +22,7 @@
 
 {% block content %}
     <!--<h1>Time per session = {{ time_per_session|date:"d/M/Y H:i:s" }}</h1>-->
-    <div id="refresh">
+    <div id="refresh" style="font-family: Georgia,serif;">
     {% if selected_requests %}
         {% for req in selected_requests %}
             <div>Request: [{{ req.request_time|date:"d/M/Y H:i:s" }}] "{{ req.method }} 
