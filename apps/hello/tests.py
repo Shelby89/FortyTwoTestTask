@@ -40,11 +40,7 @@ class SomeTests(TestCase):
     def test_used_template(self):
         "hello.html must be used in response"
         response = self.client.get(reverse('hello:index'))
-<<<<<<< HEAD
         self.assertTemplateUsed(response, 'hello/hello.html')
-=======
-        self.assertTemplateUsed(response, 'hello.html')
->>>>>>> t3_middleware
 
     def test_all_fields_exist(self):
         "All fields must be displayed"
