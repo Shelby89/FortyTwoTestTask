@@ -10,6 +10,7 @@
 
 {% block content %}
     <div id="refresh" style="font-family: Georgia,serif;">
+    <h1>Time per session = {{ time_per_session|date:"d/M/Y H:i:s" }}</h1>
     {% if selected_requests %}
         <table style="">
             <tr>
