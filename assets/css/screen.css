@@ -3,11 +3,6 @@
     font-size: 150%;
 }
 .block2 { 
-	width: 400px; 
+	width: 400px;
     font-family: Georgia,serif;
-	float: left;
-	padding: 10px;
-	padding-right: 20px;
-	top: 70px; 
-	left: 10px; 
 }
