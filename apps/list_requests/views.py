@@ -29,7 +29,7 @@ def list_requests(request):
 
     return render(
         request,
-        'list_requests/requests.html',
+        'requests.html',
         {
             'selected_requests': selected_requests,
             'count_req': count_req,

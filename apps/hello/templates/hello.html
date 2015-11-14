@@ -5,31 +5,32 @@
 
 {% block content %}
 <div class="block1">42 Coffee Cups Test Assignment</div>
-    {% if contacts%}
+	{% if contacts %}
+		<div style="text-align: center;">
+			<div class="block2" style="display: inline-block; text-align: left;">
+				{{ contacts.name }}<br>
+				{{ contacts.last_name }}<br>
+				{{ contacts.date_of_birth }}<br><br>
+				Bio:<br>
+				{{ contacts.bio|linebreaks }}
+			</div>
+			<div class="block2" style="display: inline-block; text-align: left;">
+				Contacts<br><br>
+				Email: {{ contacts.email }}<br>
+				Jabber: {{ contacts.jabber }}<br>
+				Skype: {{ contacts.skype }}<br><br>
+				Other contacts:<br>
+				{{ contacts.other_contacts|linebreaks }}
+			</div>
+		</div>
+	{% else %}
+		<div class="block2" style="display: inline-block; text-align: left;">
+			There is no information in database.
+		</div>
+	{% endif %}
 
-				<div class="block2">
-							<br>
-							{{ contacts.name }}<br><br>
-							{{ contacts.last_name }}<br><br>
-							{{ contacts.date_of_birth }}<br><br><br>
-							Bio:<br>
-							{{ contacts.bio|linebreaks }}
-				</div>
-				<div class="block2">
-							Contacts<br><br>
-	
-							Email: {{ contacts.email }}<br><br>
-							Jabber: {{ contacts.jabber }}<br><br>
-							Skype: {{ contacts.skype }}<br><br>
-							Other contacts:<br>
-							{{ contacts.other_contacts|linebreaks }}
-				</div>
-{% else %}
-    <div class="block2">
-    There is no information about D.Sapotnitskiy in DB.
-    </div>
-{% endif %}
-	<div class="block3">
+	<div style="text-align: center;">
+		<div class="block3" style="display: inline-block; text-align: left;">
 		<a href='/requests/'>requests</a>
 	</div>
 {% endblock content %}

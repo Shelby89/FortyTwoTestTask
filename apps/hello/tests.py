@@ -13,7 +13,7 @@ class SomeTests(TestCase):
         Contact.objects.all().delete()
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "There is no information about")
+        self.assertContains(response, "There is no information")
         self.assertEqual(response.context['contacts'], None)
 
     def test_two_rows_in_db(self):

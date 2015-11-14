@@ -5,20 +5,12 @@
 .block2 {
 		width: 400px;
 		height: 400px;
-    	font-family: Georgia,serif;
-		padding: 10px;
-		padding-right: 20px; 
-		float: left;
-		top: 70px; 
-    	left: 10px; 
+    	font-family: Georgia,serif; 
 }
 .block3 {
     	font-family: Georgia,serif;
     	width: 800px;
     	border-top: 2px solid black;
-	  	position: relative;
-	 	clear: left;
-    	/*bottom: 2px;*/
 }
 table, th, td {
     	border: 1px solid black;
