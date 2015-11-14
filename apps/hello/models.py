@@ -12,4 +12,5 @@ class Contact(models.Model):
     other_contacts = models.TextField()
 
     def __unicode__(self):
-        return self.last_name
+        full_name = self.last_name + " " + self.name
+        return full_name

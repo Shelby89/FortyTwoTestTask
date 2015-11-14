@@ -2,6 +2,7 @@
 	font-family: Georgia,serif;
     font-size: 150%;
 }
+<<<<<<< HEAD
 .block2 {
 		width: 400px;
 		height: 400px;
@@ -27,3 +28,9 @@ table, th, td {
 th, td {
     	padding: 5px;
 }
+=======
+.block2 { 
+	width: 400px;
+    font-family: Georgia,serif;
+}
+>>>>>>> t1_contacts
