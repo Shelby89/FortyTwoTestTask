@@ -1,6 +1,7 @@
 .block1 { 
 		font-family: Georgia,serif;
     	font-size: 150%;
+    	width: 800px;
 }
 .block2 {
 		width: 400px;
@@ -9,7 +10,7 @@
 }
 .block3 {
     	font-family: Georgia,serif;
-    	width: 800px;
+    	width: 700px;
     	border-top: 2px solid black;
 }
 table, th, td {

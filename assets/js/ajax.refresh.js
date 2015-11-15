@@ -6,10 +6,6 @@ setInterval(function(){
                   $('#refresh').html(html);
                   var myTitle = $(data).filter('title').html();
                   $('title').html(myTitle);
-                  
-                  if (document.body.className == 'focused') {
-                     document.title = "FOCUSED";
-                  }
                   }
             });
         }, 2000);
