@@ -2,35 +2,7 @@
 	font-family: Georgia,serif;
     font-size: 150%;
 }
-<<<<<<< HEAD
-.block2 {
-		width: 400px;
-		height: 400px;
-    	font-family: Georgia,serif;
-		padding: 10px;
-		padding-right: 20px; 
-		float: left;
-		top: 70px; 
-    	left: 10px; 
-}
-.block3 {
-    	font-family: Georgia,serif;
-    	width: 800px;
-    	border-top: 2px solid black;
-	  	position: relative;
-	 	clear: left;
-    	/*bottom: 2px;*/
-}
-table, th, td {
-    	border: 1px solid black;
-    	border-collapse: collapse;
-}
-th, td {
-    	padding: 5px;
-}
-=======
 .block2 { 
 	width: 400px;
     font-family: Georgia,serif;
 }
->>>>>>> t1_contacts
