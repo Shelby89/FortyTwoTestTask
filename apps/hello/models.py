@@ -13,13 +13,3 @@ class Contact(models.Model):
     jabber = models.CharField(max_length=30)
     skype = models.CharField(max_length=30)
     other_contacts = models.TextField()
-
-
-@receiver(signals.post_syncdb)
-def create_adminuser(app, **kwargs):
-    user, created = User.objects.get_or_create(username='admin')
-    if created:
-        user.set_password('admin')
-        user.is_superuser = True
-        user.is_staff = True
-        user.save()

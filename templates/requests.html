@@ -6,12 +6,47 @@
 {% block extra_head %}
     <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/ajax.refresh.js' %}"></script>
+    <script type="text/javascript">
+        
+        function onBlur() {
+        	document.body.className = 'blurred';
+        	document.getElementById('focus_time').innerHTML = "PAGE WAS BLURRED AT " + Date();
+        	var last_req = document.getElementById('myTable').rows[1].cells[0].innerHTML;
+        	document.getElementById('last').innerHTML = "LAST REQUEST WAS AT ";
+        };
+        function onFocus(){
+        	document.body.className = 'focused';
+        	document.title = "FOCUSED";
+        };
+        
+        if (/*@cc_on!@*/false) { // check for Internet Explorer
+        	document.onfocusin = onFocus;
+        	document.onfocusout = onBlur;
+        } else {
+        	window.onfocus = onFocus;
+        	window.onblur = onBlur;
+        }
+
+    </script>
+    
+    <style type="text/css">
+        .focused #focused, .blurred #blurred, .focus_time, .last { display: inline }
+        .focused #blurred, .blurred #focused { display: none }
+
+    </style>
 {% endblock extra_head %}
 
+{% block body_class %}focused{% endblock %}
+
 {% block content %}
+    <div>
+        PAGE IS <span id="focused">FOCUSED</span><span id="blurred">BLURRED</span><br>
+        <span id="focus_time"><span><br>
+        <span id="last"></span>
+    </div>
     <div id="refresh" style="font-family: Georgia,serif;">
     {% if selected_requests %}
-        <table style="">
+        <table id="myTable">
             <tr>
                 <th>Time of request</th>
                 <th>Method</th>
@@ -22,7 +57,7 @@
         
         {% for req in selected_requests %}
             <tr>
-                <td>{{ req.request_time|date:"d/M/Y H:i:s" }}</td>
+                <td id="last_request">{{ req.request_time|date:"d/M/Y H:i:s" }}</td>
                 <td>{{ req.method }}</td>
                 <td>{{ req.path_info }}</td>
                 <td>{{ req.server_protocol }}</td>
@@ -37,7 +72,7 @@
         </div>
     {% endif %}
     </div>
-    <div class="block3" style="border: none; position: absolute; top: 350px;">
+    <div class="block3" style="border: none;">
 		<a href='/'>main page</a>
 	</div>
 {% endblock content%}

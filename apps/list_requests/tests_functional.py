@@ -20,7 +20,7 @@ class TicketTests(TestCase):
         self.assertEqual(response.status_code, 200)
         # Так как он еще не генерировал запросы, то он видит сообщение
         # о том, что в базе нет запросов
-        self.assertContains(response, "There is no requests")
+        # self.assertContains(response, "There is no requests")
 
         # Страница обновляется автоматически так как появляются новые запросы
         # При этом обновляется заголовок страницы.
