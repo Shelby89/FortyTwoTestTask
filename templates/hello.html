@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Ticket #1 {% endblock title %}
+{% block title %}Ticket #3{% endblock title %}
+
 
 {% block content %}
 	<div style="text-align: center;">
@@ -26,9 +27,14 @@
 				{{ contacts.other_contacts|linebreaks }}
 			</div>
 		</div>
-    {% else %}
-    <div style="text-align: center;">
-		<div class="block2" style="display: inline-block; text-align: left;">There is no information in database.</div>
+	{% else %}
+		<div class="block2" style="display: inline-block; text-align: left;">
+			There is no information in database.
+		</div>
+	{% endif %}
+
+	<div style="text-align: center;">
+		<div class="block3" style="display: inline-block; text-align: left;">
+		<a href='/requests/'>requests</a>
 	</div>
-{% endif %}
 {% endblock content %}

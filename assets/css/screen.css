@@ -1,9 +1,22 @@
 .block1 { 
-	font-family: Georgia,serif;
-    font-size: 150%;
-    width: 800px;
+		font-family: Georgia,serif;
+    	font-size: 150%;
+    	width: 800px;
 }
-.block2 { 
-	width: 400px;
-    font-family: Georgia,serif;
+.block2 {
+		width: 400px;
+		height: 400px;
+    	font-family: Georgia,serif; 
+}
+.block3 {
+    	font-family: Georgia,serif;
+    	width: 700px;
+    	border-top: 2px solid black;
+}
+table, th, td {
+    	border: 1px solid black;
+    	border-collapse: collapse;
+}
+th, td {
+    	padding: 5px;
 }
