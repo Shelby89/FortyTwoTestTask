@@ -11,14 +11,12 @@ def list_requests(request):
     
     if len(time_per_session1) == 0:
         time_per_session = None
-        
+        count_req = 0
+        selected_requests = None
     else:
         time_per_session = time_per_session1[-1]
-
-    selected_requests = StoredRequests.objects.order_by('-request_time')[:10]
-    count_req = StoredRequests.objects.filter(request_time__gt=time_per_session).count
-    
-    
+        selected_requests = StoredRequests.objects.order_by('-request_time')[:10]
+        count_req = StoredRequests.objects.filter(request_time__gt=time_per_session).count
     
     return render(
         request,
