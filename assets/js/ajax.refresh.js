@@ -4,9 +4,10 @@ $(document).ready(function() {
          url: '/requests/',
          success: function(data) {
             //var html = $(data).filter('#refresh').html();
-            //$('#refresh').html(html);
-            var myTitle = $(data).filter('title').html();
-            $('title').html(myTitle);
+            $('#refresh').html($(data).filter('#refresh').html());
+            //var myTitle = $(data).filter('title').html();
+            //$('title').html(myTitle);
+            $('title').html($(data).filter('title').html());
          }
       });
    }, 2000);
