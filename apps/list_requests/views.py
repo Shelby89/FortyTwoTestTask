@@ -19,7 +19,7 @@ def list_requests(request):
         if request.GET.get('last_req') is not None:
             date_object = datetime.strptime(
                 request.GET.get('last_req'),
-                '%d/%b/%Y %I:%M:%S'
+                '%d/%b/%Y %H:%M:%S'
             )
             time_per_session = date_object + timedelta(seconds=1)
         count_req = StoredRequests.objects.filter(
