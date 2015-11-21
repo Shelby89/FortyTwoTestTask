@@ -1,7 +1,7 @@
 $(document).ready(function() {
    setInterval(function(){
       $.ajax({
-         url: /requests/,
+         url: '/requests/',
          success: function(data) {
             var html = $(data).filter('#refresh').html();
             $('#refresh').html(html);
@@ -9,5 +9,5 @@ $(document).ready(function() {
             $('title').html(myTitle);
          }
       });
-   }, 5000);
+   }, 2000);
 });

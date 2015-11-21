@@ -10,4 +10,4 @@ class MyHttpRequestMiddleware(object):
 	        				server_protocol = request.META.get('SERVER_PROTOCOL'),
 	        				server_port = request.META.get('SERVER_PORT'),
 	        				remote_address = request.META.get('REMOTE_ADDR')).save()
-        return None
+        return
