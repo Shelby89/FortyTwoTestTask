@@ -2,20 +2,19 @@
 {% load static %}
 
 {% block title %} 
-    {% if count_req %}
         ({{ count_req }}) Ticket #3
-    {% else %}
-        Ticket #3
-    {% endif %}
 {% endblock title %}
 
 {% block extra_head %}
     <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/ajax.refresh.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/check_page_activity.js' %}"></script>
 {% endblock extra_head %}
 
+{% block body_class %}focused{% endblock %}
 
 {% block content %}
+
 <div id="refresh" style="font-family: Georgia,serif;">
     <div style="text-align: center;">
     {% if selected_requests %}
