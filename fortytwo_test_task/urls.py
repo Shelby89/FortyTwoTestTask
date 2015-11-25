@@ -13,6 +13,10 @@ urlpatterns = patterns(
         r'^requests/',
         include('apps.list_requests.urls', namespace="list_requests")
     ),
+    url(
+        r'^edit/',
+        include('apps.edit.urls', namespace="edit")
+    ),
     url(r'^admin/', include(admin.site.urls)),
 )
 
