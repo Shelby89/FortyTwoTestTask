@@ -3,4 +3,4 @@ from django.shortcuts import render
 
 def edit(request):
     
-    return '<h1>Hello</h1>'
+    return HttpRequest('<h1>Hello</h1>')
