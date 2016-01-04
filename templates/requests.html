@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %} 
-        ({{ count_req }}) Ticket #3
+        Ticket #3
 {% endblock title %}
 
 {% block extra_head %}
@@ -19,23 +19,19 @@
     <div style="text-align: center;">
     {% if selected_requests %}
         <table id="myTable" style="display: inline-block; text-align: left;">
-            <tr style="text-align: center;">
-                <th>Time of request</th>
-                <th>Method</th>
-                <th>Path</th>
-                <th>Server Protocol</th>
-                <th>Server Address and Port</th>
-            </tr>
-        
-        {% for req in selected_requests %}
-            <tr>
-                <td>{{ req.request_time|date:"d/M/Y H:i:s" }}</td>
-                <td>{{ req.method }}</td>
-                <td>{{ req.path_info }}</td>
-                <td>{{ req.server_protocol }}</td>
-                <td>{{ req.remote_address }}:{{ req.server_port }}</td>
-            </tr>
-        {% endfor %}
+            <thead>
+                <tr style="text-align: center;">
+                    <th>Time of request</th>
+                    <th>Method</th>
+                    <th>Path</th>
+                    <th>Server Protocol</th>
+                    <th>Server Address and Port</th>
+                    <th>Is viewed?</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
         </table>
     {% else %}
         <div class="block3" style="border-top: none; display: inline-block; text-align: left;">

@@ -1,11 +1,10 @@
 $(document).ready(function() {  
         function onBlur() {
         	document.body.className = 'blurred';
-        	var last_req = document.getElementById('myTable').rows[1].cells[0].innerHTML;
         	$.ajax({
                 url: '/requests/',
                 type: 'GET',
-                data: {'status': "blurred", 'last_req': last_req},
+                data: {'status': "blurred"},
                 traditional: true,
                 cache: false
             });
