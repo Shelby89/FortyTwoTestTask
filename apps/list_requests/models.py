@@ -8,3 +8,4 @@ class StoredRequests(models.Model):
     server_protocol = models.CharField(max_length=50)
     server_port = models.IntegerField()
     remote_address = models.CharField(max_length=50)
+    viewed = models.BooleanField(default=False)

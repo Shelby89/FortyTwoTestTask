@@ -21,14 +21,17 @@ class Ticket_3_Tests(TestCase):
     
     def test_middleware_is_working_and_return_my_request(self):
         "Check if middleware is working and return new request"
-        response = self.client.get(reverse('list_requests:requests'))
+        response = self.client.get('/requests')
+        self.assertEqual(response.status_code, 301)
+        response = self.client.get('/requests/table/')
         self.assertEqual(response.status_code, 200)
         content = response.content
         first_td = content.find("<td>")
         last_td = content.find("</td>")
         last1 = content[first_td:last_td]
         time.sleep(1)
-        response = self.client.get(reverse('list_requests:requests'))
+        response = self.client.get('/requests/table/')
+        self.assertEqual(response.status_code, 200)
         content = response.content
         first_td = content.find("<td>")
         last_td = content.find("</td>")
