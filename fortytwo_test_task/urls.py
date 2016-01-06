@@ -9,7 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', include('apps.hello.urls', namespace="hello")),
-    url(r'^start_page/', 'apps.hello.views.start_page', name="start_page"),
+    url(r'start_page/', 'apps.list_requests.views.start_page', name="start"),
+    url(r'test_requests/', 'apps.list_requests.views.test_requests', name="test_requests"),
     url(
         r'^requests/',
         include('apps.list_requests.urls', namespace="list_requests")
