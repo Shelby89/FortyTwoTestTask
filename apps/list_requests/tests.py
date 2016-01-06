@@ -12,13 +12,13 @@ class Ticket_3_Tests(TestCase):
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "<a href='/requests/'>requests")
-    
+
     def test_used_template_for_requests(self):
         "requests.html must be used in response"
         response = self.client.get(reverse('list_requests:requests'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'requests.html')
-    
+
     def test_middleware_is_working_and_return_my_request(self):
         "Check if middleware is working and return new request"
         response = self.client.get('/requests')
@@ -56,5 +56,3 @@ class Ticket_3_Tests(TestCase):
             response = self.client.get(reverse('list_requests:requests'))
             self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['selected_requests'].count(), 10)
-        
-    
