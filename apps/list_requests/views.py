@@ -1,16 +1,9 @@
 import json
 from django.shortcuts import render, HttpResponse
 from django.template.loader import render_to_string
-from datetime import datetime, timedelta
 
 from list_requests.models import StoredRequests
 
-
-def start_page(request):
-    return render(request, 'start_page.html')
-
-def test_requests(request):
-    return render(request, 'requests_page.html')
 
 def list_requests(request):
     status = request.GET.get('status', 'focused')
@@ -19,9 +12,10 @@ def list_requests(request):
     selected_requests = StoredRequests.objects.order_by('-request_time')[:10]
     return render(
         request,
-        'requests.html', 
+        'requests.html',
         {'selected_requests': selected_requests}
     )
+
 
 def table(request):
     requests = StoredRequests.objects.order_by('-request_time')[:10]

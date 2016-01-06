@@ -1,7 +1,4 @@
 from django.db import models
-from django.dispatch import receiver
-from django.db.models import signals
-from django.contrib.auth.models import User
 
 
 class Contact(models.Model):
