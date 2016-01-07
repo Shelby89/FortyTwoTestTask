@@ -12,7 +12,7 @@ class Ticket_3_Tests(TestCase):
         response = self.client.get(reverse('hello:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "<a href='/requests/'>requests")
-
+    
     def test_used_template_for_requests(self):
         "requests.html must be used in response"
         response = self.client.get(reverse('list_requests:requests'))
