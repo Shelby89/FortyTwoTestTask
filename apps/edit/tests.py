@@ -10,4 +10,4 @@ class Ticket_5_Tests(TestCase):
     def test_view_exist_for_edit_page(self):
         "url edit/ must contain <form> tag"
         response = self.client.get(reverse('edit:edit'))
-        self.assertContains(response, "<form")
+        self.assertContains(response, "form")
