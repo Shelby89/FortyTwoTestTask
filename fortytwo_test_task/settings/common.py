@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'apps.hello',
     'apps.list_requests',
+    'apps.edit',
     'south',
 )
 
