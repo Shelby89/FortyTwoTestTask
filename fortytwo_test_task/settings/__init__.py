@@ -1,6 +1,6 @@
 from .common import *
 
 try:
-    from .local import *  # noqa
+    from .local import *
 except ImportError:
     pass
