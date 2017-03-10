@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Ticket #1{% endblock title %}
+{% block title %}Ticket #3{% endblock title %}
 
 
 {% block content %}
 	<div style="text-align: center;">
 		<div class="block1" style="display: inline-block; text-align: left;">42 Coffee Cups Test Assignment</div>
-	</div>
-    {% if contacts %}
+	</div>	
+	{% if contacts %}
 		<div style="text-align: center;">
-			
 			<div class="block2" style="display: inline-block; text-align: left;">
 				{{ contacts.name }}<br>
 				{{ contacts.last_name }}<br>
@@ -17,7 +16,6 @@
 				Bio:<br>
 				{{ contacts.bio|linebreaks }}
 			</div>
-		
 			<div class="block2" style="display: inline-block; text-align: left;">
 				Contacts<br><br>
 				Email: {{ contacts.email }}<br>
@@ -32,4 +30,9 @@
 			There is no information in database.
 		</div>
 	{% endif %}
+
+	<div style="text-align: center;">
+		<div class="block3" style="display: inline-block; text-align: left;">
+		<a href='/requests/'>requests</a>
+	</div>
 {% endblock content %}

@@ -23,6 +23,7 @@ class SomeTests(TestCase):
                                date_of_birth="1989-03-24"
                                )
         response = self.client.get(reverse('hello:index'))
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['contacts'],
                          Contact.objects.first())
         self.assertEqual(response.context['contacts'].name, "Dmytro")
@@ -30,6 +31,11 @@ class SomeTests(TestCase):
                          "Sapotnitskiy")
         self.assertContains(response, "Dmytro")
         self.assertContains(response, "Sapotnitskiy")
+
+    def test_view_exist(self):
+        "View must exist"
+        response = self.client.get(reverse('hello:index'))
+        self.assertEqual(response.status_code, 200)
 
     def test_used_template(self):
         "hello.html must be used in response"
