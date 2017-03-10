@@ -14,18 +14,24 @@ class Ticket_3_Tests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, reverse('hello:start_page'))
 
-    def test_view_exist_with_initial_data(self):
+    def test_view_exist_with_data(self):
         """
-        View must response with hard-coded data
+        View must response with data from DB
         """
+        StoredRequests.objects.create(
+            method="GET",
+            path_info="some_url/",
+            server_protocol="HTTP/1.1",
+            server_port="8000",
+            remote_address="1.1.1.1"
+        )
         response = self.client.get(reverse('list_requests:requests'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "05/Jan/2016 21:50:10")
         self.assertContains(response, "GET")
-        self.assertContains(response, "/requests/")
+        self.assertContains(response, "some_url/")
         self.assertContains(response, "HTTP/1.1")
-        self.assertContains(response, "10.240.0.53:8080")
-        self.assertContains(response, "True")
+        self.assertContains(response, "1.1.1.1:8000")
+        self.assertContains(response, "False")
 
     def test_view_used_template(self):
         """
@@ -33,7 +39,7 @@ class Ticket_3_Tests(TestCase):
         template requests_page.html
         """
         response = self.client.get(reverse('list_requests:requests'))
-        self.assertTemplateUsed(response, 'requests_page.html')
+        self.assertTemplateUsed(response, 'requests.html')
 
     def test_model_exist_with_no_data(self):
         """
