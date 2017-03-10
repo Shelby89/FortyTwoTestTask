@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.hello.models import Contact
 
 
 def start_page(request):
@@ -6,4 +7,5 @@ def start_page(request):
 
 
 def index(request):
-    return render(request, 'start_page.html')
+    contacts = Contact.objects.first()
+    return render(request, 'hello.html', {'contacts': contacts})
