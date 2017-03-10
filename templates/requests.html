@@ -30,16 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for s in selected_requests %}
-                <tr style="text-align: center;">
-                    <td>{{ s.request_time }}</td>
-                    <td>{{ s.method }}</td>
-                    <td>{{ s.path_info }}</td>
-                    <td>{{ s.server_protocol }}</td>
-                    <td>{{ s.remote_address }}:{{ s.server_port }}</td>
-                    <td>{{ s.viewed }}</td>
-                </tr>
-                {% endfor %}
+                
             </tbody>
         </table>
     {% else %}
@@ -50,7 +41,7 @@
     {% endif %}
     
         <div class="block3" style="border: none; display: inline-block; text-align: left;">
-		    <a href='/'>main page</a>
+		    <a href='{% url "hello:index" %}'>Main page</a>
 	    </div>
 	</div>
 </div>
