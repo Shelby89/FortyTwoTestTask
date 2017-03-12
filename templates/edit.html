@@ -33,12 +33,24 @@
     <body>
 		<div class="container">
 		<div class="row"><h3>42 Coffee Cups Test Assignment</h3></div>
-		<form class="form-inline" action="/your-name/" method="post">
+		<form class="form-inline" action="" method="post">
+			{% csrf_token %}
+			{{ form }}
+			{% if error %}
+				<div class="form-group has-error">
+					<span class="help-block">{{ error }}</span>
+				</div>
+			{% endif %}
+			<input type="submit" value="Submit" />
+<!--
 		    <div class="row">
 				<div class="span4">
 					<div style="text-align: right;">
 							<br>
 							
+
+
+
 							<div class="form-group">
 								<label for="name">Name: </label>
 								<input id="name" type="text" name="name" value="Dmytro">
@@ -100,6 +112,7 @@
 						<a href="">Cancel</a>
 					</div>
 				</div>
+-->
 			</form>
 		<div class="row">
 			<div class="span8">

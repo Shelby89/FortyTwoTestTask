@@ -25,8 +25,7 @@ class Ticket_5_Tests_Form(TestCase):
         """
         Test that EditForm can't be empty
         """
-        self.assertFalse(self.form(data={}).is_valid(),
-                         'Should be invalid if no data is given')
+        self.assertFalse(self.form(data={}).is_valid())
 
     def test_edit_form_with_invalid_data(self):
         """
