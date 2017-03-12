@@ -35,6 +35,11 @@
 
 	<div style="text-align: center;">
 		<div class="block3" style="display: inline-block; text-align: left;">
-		<a href='/requests/'>requests</a>
+		<a href='{% url "list_requests:requests" %}'>requests</a>
+	</div>
+
+	<div style="text-align: center;">
+		<div class="block3" style="border:none; display: inline-block; text-align: left;">
+		<a href='{% url "edit:edit" %}'>Edit</a>
 	</div>
 {% endblock content %}
