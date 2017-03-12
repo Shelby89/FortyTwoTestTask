@@ -4,4 +4,5 @@ from apps.list_requests import views
 urlpatterns = patterns(
     '',
     url(r'^$', views.list_requests, name='requests'),
+    url(r'^table/', views.table, name='table'),
 )

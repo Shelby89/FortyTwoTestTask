@@ -8,15 +8,12 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', include('apps.hello.urls', namespace="hello")),
+    url(r'', include('apps.hello.urls', namespace="hello")),
     url(
         r'^requests/',
         include('apps.list_requests.urls', namespace="list_requests")
     ),
-    url(
-        r'^requests/table/', 'apps.list_requests.views.table', name="table"
-    ),
-    url(r'^edit/', include('apps.edit.urls', namespace="edit")),
+    url(r'edit/', include('apps.edit.urls', namespace="edit")),
     url(r'^admin/', include(admin.site.urls)),
 )
 
