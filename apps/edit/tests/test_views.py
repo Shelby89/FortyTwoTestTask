@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import datetime
+import json
 from django.test import TestCase, RequestFactory
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -10,6 +11,9 @@ from apps.hello.models import Contact
 
 
 class Ticket_5_Tests_View(TestCase):
+
+    fixtures = ['initial_data.json']
+
     def test_mockup(self):
         """
         Mockup of edit page should contain <form> tag and
@@ -18,16 +22,6 @@ class Ticket_5_Tests_View(TestCase):
         response = self.client.get(reverse('edit:edit_page'))
         self.assertTemplateUsed(response, 'edit_page.html')
         self.assertContains(response, "form")
-
-    def test_view_with_models_data(self):
-        """
-        View must response with hard-coded data
-        """
-        response = self.client.get(reverse('edit:edit'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "form")
-        self.assertContains(response, "Dmytro")
-        self.assertContains(response, "Sapotnitskiy")
 
     def test_view_used_template(self):
         """
@@ -38,7 +32,7 @@ class Ticket_5_Tests_View(TestCase):
 
     def test_view_with_models_data(self):
         """
-        View must response with hard-coded data
+        View must response with data from model
         """
         response = self.client.get(reverse('edit:edit'))
         self.assertEqual(response.status_code, 200)
@@ -85,23 +79,55 @@ class Ticket_5_Tests_Edit_Form(TestCase):
         data = self.valid_form_data
         response = self.client.post(
             reverse("edit:edit"),
-            data
+            data,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest'
         )
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         after = Contact.objects.first()
         self.assertNotEqual(before.name, after.name)
 
     def test_edit_change_by_invalid_data(self):
         """
-        Test that data can't be changed by EditView with valid data
+        Test that data can be changed by EditView with valid data
         """
         before = Contact.objects.first()
         response = self.client.get(reverse("edit:edit"))
         data = self.valid_form_data
         response = self.client.post(
             reverse("edit:edit"),
-            {'name': 'Dmytro', 'last_name': 'Sapotnitskiy', 'email': ''}
+            {'name': 'Dmytro', 'last_name': 'Sapotnitskiy', 'email': ''},
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest',
         )
-        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
         after = Contact.objects.first()
         self.assertEqual(before.name, after.name)
+
+    def test_edit_view_cannot_be_updated_by_usual_post_req(self):
+        """
+        Test that edit view take into account only ajax post requests
+        """
+        my_contact = Contact.objects.first().__dict__
+        my_contact['name'] = u'New_name'
+        response = self.client.post(
+            reverse('edit:edit'),
+            my_contact
+        )
+        updated_contact = Contact.objects.first()
+        self.assertEquals(response.status_code, 200)
+        self.assertNotEquals(updated_contact.name, my_contact['name'])
+
+    def test_edit_view_can_be_updated_by_ajax_only(self):
+        """
+        Test that edit view take into account only ajax post requests
+        """
+        my_contact = Contact.objects.first().__dict__
+        my_contact['name'] = u'New_name'
+        response = self.client.post(
+            reverse('edit:edit'),
+            my_contact,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+        )
+        updated_contact = Contact.objects.first()
+        self.assertEquals(updated_contact.name, my_contact['name'])
+        self.assertEquals(json.loads(response.content)['msg'],
+                         'Record was updated successfully')
